@@ -1,0 +1,35 @@
+.ChatMessage {
+  margin-bottom: 28px;
+}
+
+.ChatMessageContent {
+  display: flex;
+}
+
+.UserImageHolder {
+  margin-right: 12px;
+  flex-shrink: 0;
+}
+
+.UserImageHolder > img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+
+.MessageDate {
+  color: rgba(0, 0, 0, 0.5);
+  margin-bottom: 13px;
+  font-size: 11px;
+  line-height: 16px;
+  text-align: center;
+}
+
+.MessageBubble {
+  background: #363a44;
+  border-radius: 20px;
+  color: #ffffff;
+  font-size: 15px;
+  line-height: 20px;
+  padding: 16px 9px;
+}

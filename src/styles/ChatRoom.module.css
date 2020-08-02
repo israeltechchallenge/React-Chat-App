@@ -1,0 +1,7 @@
+.ChatRoomLayout {
+  height: calc(100vh - 70px);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding-bottom: 16px;
+}
