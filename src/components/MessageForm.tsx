@@ -3,7 +3,8 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import { Message } from "../model/Message";
 import UserContext from "../context/UserContext";
-import styles from '../styles/MessageForm.module.css';
+import styles from "../styles/MessageForm.module.css";
+import firebase from "firebase/app";
 
 interface MessageFormProps {
   onNewMessage: (message: Message) => void;
@@ -12,15 +13,22 @@ interface MessageFormProps {
 const MessageForm = ({ onNewMessage }: MessageFormProps) => {
   const [message, setMessage] = useState("");
   const userContext = useContext(UserContext);
-  const handleOnSubmit = (event: React.FormEvent<HTMLElement>) => {
+  const handleOnSubmit = async (event: React.FormEvent<HTMLElement>) => {
     event.preventDefault();
     if (userContext.currentUser) {
-      onNewMessage({
-        id: Math.random() + "",
+      const newMessage = {
         date: new Date(),
         userId: userContext.currentUser.id,
         content: message,
-      });
+      };
+      await firebase
+        .firestore()
+        .collection("messages")
+        .add(newMessage);
+      // onNewMessage({
+      //   id: result.id, 
+      //   ...newMessage
+      // });
       setMessage("");
     }
   };
