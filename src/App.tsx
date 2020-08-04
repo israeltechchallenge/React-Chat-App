@@ -20,13 +20,6 @@ const firebaseConfig = {
 
 firebase.initializeApp(firebaseConfig);
 
-// const mockUser: User = {
-//   id: "robertdeniro",
-//   displayName: "Robert De Niro",
-//   imageURL:
-//   "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.a_irm_Mz7KZ5hAVhLXeepAHaEK%26pid%3DApi&f=1",
-// };
-
 function App() {
   const [currentUser, setCurrentUser] = useState<User | null>(null);
   useEffect(() => {
@@ -34,11 +27,18 @@ function App() {
       if (!user) {
         setCurrentUser(null);
       } else {
-        setCurrentUser({
+        const loggedInUser = {
           id: user.uid,
-          displayName: user.displayName + '',
-          imageURL: user.photoURL + '',
-        });
+          displayName: user.displayName + "",
+          imageURL: user.photoURL + "",
+        };
+        setCurrentUser(loggedInUser);
+        firebase
+          .firestore()
+          .collection("users")
+          .doc(loggedInUser.id)
+          .set(loggedInUser)
+          .then();
       }
     });
   }, []);

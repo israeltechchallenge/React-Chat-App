@@ -6,8 +6,12 @@
   display: flex;
 }
 
+.ChatMessageContentFlipped {
+  display: flex;
+  flex-direction: row-reverse;
+}
+
 .UserImageHolder {
-  margin-right: 12px;
   flex-shrink: 0;
 }
 
@@ -32,4 +36,5 @@
   font-size: 15px;
   line-height: 20px;
   padding: 16px 9px;
+  margin: 0 12px;
 }
